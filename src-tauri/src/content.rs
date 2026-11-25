@@ -128,8 +128,8 @@ pub fn validate_bundle(bytes: &[u8], app_version: &str) -> Result<BundleInfo, St
             MAX_BUNDLE_BYTES / 1024 / 1024
         ));
     }
-    let value: serde_json::Value =
-        serde_json::from_slice(bytes).map_err(|e| format!("The content bundle is not valid JSON: {e}"))?;
+    let value: serde_json::Value = serde_json::from_slice(bytes)
+        .map_err(|e| format!("The content bundle is not valid JSON: {e}"))?;
     let obj = value
         .as_object()
         .ok_or_else(|| "The content bundle must be a JSON object.".to_string())?;
@@ -178,7 +178,11 @@ pub fn validate_bundle(bytes: &[u8], app_version: &str) -> Result<BundleInfo, St
             .as_object()
             .ok_or_else(|| format!("Part {pi} is not an object."))?;
         for field in ["id", "title"] {
-            if part.get(field).and_then(|v| v.as_str()).is_none_or(|s| s.trim().is_empty()) {
+            if part
+                .get(field)
+                .and_then(|v| v.as_str())
+                .is_none_or(|s| s.trim().is_empty())
+            {
                 return Err(format!("Part {pi} is missing {field}."));
             }
         }
@@ -198,7 +202,11 @@ pub fn validate_bundle(bytes: &[u8], app_version: &str) -> Result<BundleInfo, St
             if !chapter_ids.insert(id.to_string()) {
                 return Err(format!("Duplicate chapter id: {id}"));
             }
-            if chapter.get("title").and_then(|v| v.as_str()).is_none_or(|s| s.trim().is_empty()) {
+            if chapter
+                .get("title")
+                .and_then(|v| v.as_str())
+                .is_none_or(|s| s.trim().is_empty())
+            {
                 return Err(format!("Chapter {id} is missing a title."));
             }
             let markdown = chapter
@@ -210,7 +218,9 @@ pub fn validate_bundle(bytes: &[u8], app_version: &str) -> Result<BundleInfo, St
         }
     }
     if chapter_count == 0 || chapter_count > MAX_CHAPTERS {
-        return Err(format!("The bundle must contain 1–{MAX_CHAPTERS} chapters."));
+        return Err(format!(
+            "The bundle must contain 1–{MAX_CHAPTERS} chapters."
+        ));
     }
     if markdown_bytes > 16 * 1024 * 1024 {
         return Err("The bundle's text is larger than the 16 MB safety limit.".into());
@@ -247,7 +257,9 @@ pub fn validate_bundle(bytes: &[u8], app_version: &str) -> Result<BundleInfo, St
 
     if let Some(search) = obj.get("search").and_then(|v| v.as_array()) {
         if search.len() > MAX_SEARCH_BLOCKS {
-            return Err(format!("The search index has more than {MAX_SEARCH_BLOCKS} blocks."));
+            return Err(format!(
+                "The search index has more than {MAX_SEARCH_BLOCKS} blocks."
+            ));
         }
     }
 
@@ -581,7 +593,8 @@ impl ContentStore {
             return Err("The installed file exceeds the size limit.".into());
         }
         let info = validate_bundle(&bytes, env!("CARGO_PKG_VERSION"))?;
-        let json = String::from_utf8(bytes).map_err(|_| "The content is not valid UTF-8.".to_string())?;
+        let json =
+            String::from_utf8(bytes).map_err(|_| "The content is not valid UTF-8.".to_string())?;
         let installed_at = fs::metadata(path)
             .and_then(|m| m.modified())
             .ok()
@@ -623,7 +636,9 @@ impl ContentStore {
         fs::rename(&tmp, self.staging_file()).map_err(|e| e.to_string())?;
         let snapshot = self.install_staged(source)?;
         if snapshot.version != info.version {
-            return Err("Internal error: installed version does not match the verified bundle.".into());
+            return Err(
+                "Internal error: installed version does not match the verified bundle.".into(),
+            );
         }
         Ok(snapshot)
     }
@@ -709,7 +724,8 @@ impl ContentStore {
         if temp.exists() {
             fs::remove_dir_all(&temp).map_err(|e| e.to_string())?;
         }
-        fs::rename(&current, &temp).map_err(|e| format!("Could not stage the current content: {e}"))?;
+        fs::rename(&current, &temp)
+            .map_err(|e| format!("Could not stage the current content: {e}"))?;
         if let Err(e) = fs::rename(&previous, &current) {
             let _ = fs::rename(&temp, &current);
             return Err(format!("Could not restore the previous content: {e}"));
@@ -886,7 +902,10 @@ mod tests {
 
         let mut value: serde_json::Value = serde_json::from_str(EMBEDDED_SEED).unwrap();
         let first = value["parts"][0]["chapters"][0].clone();
-        value["parts"][0]["chapters"].as_array_mut().unwrap().push(first);
+        value["parts"][0]["chapters"]
+            .as_array_mut()
+            .unwrap()
+            .push(first);
         assert!(validate_bundle(value.to_string().as_bytes(), "0.1.0").is_err());
     }
 

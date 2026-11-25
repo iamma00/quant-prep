@@ -19,8 +19,8 @@ use std::time::{Duration, Instant};
 use tauri::{AppHandle, Emitter};
 
 use crate::content::{
-    is_version_like, now_unix, validate_bundle, version_ge, version_gt, ContentSource, ContentStore,
-    Snapshot, MAX_BUNDLE_BYTES,
+    is_version_like, now_unix, validate_bundle, version_ge, version_gt, ContentSource,
+    ContentStore, Snapshot, MAX_BUNDLE_BYTES,
 };
 use crate::settings::{validate_https_url, Settings};
 
@@ -260,11 +260,7 @@ struct Fetched {
     not_modified: bool,
 }
 
-async fn fetch_manifest(
-    client: &Client,
-    url: &Url,
-    etag: Option<&str>,
-) -> Result<Fetched, String> {
+async fn fetch_manifest(client: &Client, url: &Url, etag: Option<&str>) -> Result<Fetched, String> {
     let mut last_error = String::new();
     for attempt in 0..DOWNLOAD_ATTEMPTS {
         let mut request = client.get(url.clone()).header("Accept", "application/json");
@@ -297,7 +293,8 @@ async fn fetch_manifest(
                 }
                 if !status.is_success() {
                     last_error = friendly_status(status);
-                    let retryable = status.is_server_error() || status == StatusCode::TOO_MANY_REQUESTS;
+                    let retryable =
+                        status.is_server_error() || status == StatusCode::TOO_MANY_REQUESTS;
                     if retryable && attempt + 1 < DOWNLOAD_ATTEMPTS {
                         tokio::time::sleep(Duration::from_millis(900 * (attempt as u64 + 1))).await;
                         continue;
@@ -345,7 +342,8 @@ async fn download_bundle(
                     let retryable =
                         status.is_server_error() || status == StatusCode::TOO_MANY_REQUESTS;
                     if retryable && attempt + 1 < DOWNLOAD_ATTEMPTS {
-                        tokio::time::sleep(Duration::from_millis(1200 * (attempt as u64 + 1))).await;
+                        tokio::time::sleep(Duration::from_millis(1200 * (attempt as u64 + 1)))
+                            .await;
                         continue;
                     }
                     return Err(last_error);
@@ -394,7 +392,8 @@ async fn download_bundle(
                 if let Some(message) = interrupted {
                     last_error = message;
                     if attempt + 1 < DOWNLOAD_ATTEMPTS {
-                        tokio::time::sleep(Duration::from_millis(1200 * (attempt as u64 + 1))).await;
+                        tokio::time::sleep(Duration::from_millis(1200 * (attempt as u64 + 1)))
+                            .await;
                         continue;
                     }
                     return Err(last_error);
@@ -460,7 +459,9 @@ pub async fn check(
 
     let manifest = fetched.manifest;
     let newer = version_gt(&manifest.content_version, &current.version);
-    let blocked_reason = if newer && !version_ge(env!("CARGO_PKG_VERSION"), &manifest.app_min_version) {
+    let blocked_reason = if newer
+        && !version_ge(env!("CARGO_PKG_VERSION"), &manifest.app_min_version)
+    {
         Some(format!(
             "This content needs app version {} or newer. Update the app from GitHub Releases first.",
             manifest.app_min_version
@@ -594,7 +595,8 @@ mod tests {
             schema_version: 1,
             content_version: "1.1.0".into(),
             app_min_version: "0.1.0".into(),
-            bundle_url: "https://github.com/iamma00/quant-org-os/releases/download/x/seed.json".into(),
+            bundle_url: "https://github.com/iamma00/quant-org-os/releases/download/x/seed.json"
+                .into(),
             bundle_sha256: "a".repeat(64),
             bundle_size: 1000,
             notes: "notes".into(),
@@ -604,10 +606,14 @@ mod tests {
 
     #[test]
     fn manifest_validation_accepts_github_and_same_host() {
-        let url = Url::parse("https://raw.githubusercontent.com/iamma00/quant-org-os/main/updates/manifest.json").unwrap();
+        let url = Url::parse(
+            "https://raw.githubusercontent.com/iamma00/quant-org-os/main/updates/manifest.json",
+        )
+        .unwrap();
         assert!(validate_manifest(&manifest(), &url).is_ok());
         let mut same_host = manifest();
-        same_host.bundle_url = "https://raw.githubusercontent.com/iamma00/quant-org-os/main/seed.json".into();
+        same_host.bundle_url =
+            "https://raw.githubusercontent.com/iamma00/quant-org-os/main/seed.json".into();
         assert!(validate_manifest(&same_host, &url).is_ok());
     }
 

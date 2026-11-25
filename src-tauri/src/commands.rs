@@ -149,7 +149,10 @@ pub async fn install_update(
 }
 
 #[tauri::command]
-pub fn rollback_content(app: AppHandle, state: State<'_, AppState>) -> Result<ContentStatus, String> {
+pub fn rollback_content(
+    app: AppHandle,
+    state: State<'_, AppState>,
+) -> Result<ContentStatus, String> {
     let previous = state.content.snapshot().version;
     let snapshot = state.content.rollback()?;
     let status = ContentStatus::new(snapshot.clone(), Some(previous));
@@ -223,7 +226,10 @@ fn open_folder(path: &Path) -> Result<(), String> {
 
 #[cfg(target_os = "android")]
 fn open_folder(_path: &Path) -> Result<(), String> {
-    Err("Android does not expose an app data folder to the file manager. Use Diagnostics instead.".into())
+    Err(
+        "Android does not expose an app data folder to the file manager. Use Diagnostics instead."
+            .into(),
+    )
 }
 
 fn diagnostics_inner(state: &AppState) -> Diagnostics {
