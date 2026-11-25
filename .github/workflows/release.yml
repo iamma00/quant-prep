@@ -104,7 +104,7 @@ jobs:
       - name: Scaffold the Android project if needed
         run: |
           if [ ! -d src-tauri/gen/android ]; then
-            npx tauri android init
+            npx tauri android init --ci
           fi
       - name: Build debug APK
         run: |
