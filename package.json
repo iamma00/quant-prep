@@ -9,6 +9,8 @@
     "tauri": "tauri",
     "dev": "tauri dev",
     "build": "tauri build",
+    "build:app": "tauri build --no-bundle",
+    "build:portable": "tauri build --no-bundle && powershell -ExecutionPolicy Bypass -File tools/make_portable.ps1",
     "build:debug": "tauri build --debug",
     "check": "cargo check --manifest-path src-tauri/Cargo.toml",
     "test": "cargo test --manifest-path src-tauri/Cargo.toml",

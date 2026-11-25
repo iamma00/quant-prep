@@ -63,7 +63,16 @@ if (Test-Path $zip) { Remove-Item $zip -Force }
 Compress-Archive -Path (Join-Path $staging "*") -DestinationPath $zip -CompressionLevel Optimal
 Remove-Item $staging -Recurse -Force
 
-$hash = (Get-FileHash $zip -Algorithm SHA256).Hash.ToLower()
+$hash = ""
+$sha = [System.Security.Cryptography.SHA256]::Create()
+$stream = [System.IO.File]::OpenRead($zip)
+try {
+    $bytes = $sha.ComputeHash($stream)
+    $hash = ([System.BitConverter]::ToString($bytes) -replace "-", "").ToLowerInvariant()
+} finally {
+    $stream.Dispose()
+    $sha.Dispose()
+}
 $size = (Get-Item $zip).Length
 Write-Output "wrote $zip"
 Write-Output ("  size   {0:N0} bytes" -f $size)

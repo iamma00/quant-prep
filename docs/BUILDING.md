@@ -16,6 +16,8 @@ npm run build
 | --- | --- |
 | `npm run dev` | Desktop dev build with a native window. |
 | `npm run build` | Optimized desktop build + installer/bundle. |
+| `npm run build:app` | Optimized executable without installer tooling. |
+| `npm run build:portable` | Executable + portable Windows zip, no WiX/NSIS. |
 | `npm run build:debug` | Debug desktop build, faster, larger. |
 | `npm test` | Rust unit tests (content store, updates, settings). |
 | `npm run verify` | Validate the document, bundle, counts and hashes. |
