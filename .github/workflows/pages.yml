@@ -1,0 +1,47 @@
+name: Web preview
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assemble the static site
+        run: |
+          mkdir -p _site/ui _site/src-tauri/resources
+          cp -r ui/* _site/ui/
+          cp src-tauri/resources/seed.json _site/src-tauri/resources/seed.json
+          cat > _site/index.html <<'HTML'
+          <!doctype html>
+          <meta charset="utf-8">
+          <title>Quant Org OS</title>
+          <meta http-equiv="refresh" content="0; url=./ui/index.html">
+          <link rel="canonical" href="./ui/index.html">
+          <p><a href="./ui/index.html">Open Quant Org OS</a></p>
+          HTML
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

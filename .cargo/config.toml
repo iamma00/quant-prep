@@ -1,0 +1,9 @@
+# Local build configuration.
+#
+# The Windows GNU toolchain builds the library as a `cdylib` (needed for the
+# Android/iOS targets). MinGW's linker tries to export every reachable Rust
+# symbol from that DLL, which overflows the PE ordinal space and fails with
+# "export ordinal too large". Desktop Windows does not consume any of those
+# exports, so exclude them. Other targets (MSVC, macOS, Android) are untouched.
+[target.x86_64-pc-windows-gnu]
+rustflags = ["-C", "link-arg=-Wl,--exclude-all-symbols"]

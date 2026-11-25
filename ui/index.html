@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Quant Org OS — an offline-first operating manual for how an algorithmic trading firm is structured, how people grow, and how decisions get made.">
+  <meta name="theme-color" content="#0F2E2E">
+  <meta name="color-scheme" content="light dark">
+  <title>Quant Org OS</title>
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="app-shell" id="app">
+    <header class="topbar" id="topbar">
+      <div class="topbar-left">
+        <button class="icon-btn menu-btn" id="menu-btn" aria-label="Open navigation" aria-controls="sidebar" aria-expanded="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <a class="brand" href="#/home" aria-label="Quant Org OS — home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 64 64">
+              <circle cx="30" cy="30" r="17" fill="none" stroke="currentColor" stroke-width="7"/>
+              <path d="M39 39l10 10" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
+              <circle cx="51" cy="51" r="4.6" fill="#D9A441" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </span>
+          <span class="brand-text">
+            <span class="brand-name">Quant Org OS</span>
+            <span class="brand-sub">Operating manual</span>
+          </span>
+        </a>
+        <span class="version-pill" id="version-pill" title="Installed content version">v1.0.0</span>
+      </div>
+
+      <div class="topbar-right">
+        <button class="search-trigger" id="search-trigger" aria-label="Search (Ctrl+K)">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+          <span>Search</span>
+          <kbd class="kbd">Ctrl K</kbd>
+        </button>
+        <span class="net-pill" id="net-pill" title="Network status">
+          <span class="net-dot" aria-hidden="true"></span>
+          <span class="net-label">Offline ready</span>
+        </span>
+        <button class="icon-btn" id="update-btn" aria-label="Content updates" title="Content updates" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 19h16"/></svg>
+          <span class="update-dot" aria-hidden="true"></span>
+        </button>
+        <button class="icon-btn" id="theme-btn" aria-label="Toggle theme" title="Toggle theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="icon-sun"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="icon-moon"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="layout">
+      <div class="sidebar-backdrop" id="sidebar-backdrop" hidden></div>
+      <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+        <div class="sidebar-inner">
+          <nav class="side-nav" id="side-nav" aria-label="Sections"></nav>
+          <div class="side-divider" role="presentation"></div>
+          <div class="side-contents-head">
+            <span>Contents</span>
+            <button class="icon-btn tiny" id="collapse-contents" aria-label="Collapse all parts" title="Collapse all">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+          </div>
+          <nav class="contents" id="contents" aria-label="Document contents"></nav>
+          <div class="sidebar-foot">
+            <div class="sidebar-foot-row">
+              <span class="source-dot" id="source-dot" aria-hidden="true"></span>
+              <span id="source-label">Bundled edition</span>
+            </div>
+            <div class="sidebar-foot-meta" id="sidebar-meta">Works offline · no telemetry</div>
+            <a class="sidebar-link" href="#/about">About &amp; source</a>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main" id="main" tabindex="-1">
+        <div class="boot-screen" id="boot-screen">
+          <div class="boot-mark" aria-hidden="true">
+            <svg viewBox="0 0 64 64">
+              <circle cx="30" cy="30" r="17" fill="none" stroke="currentColor" stroke-width="6"/>
+              <path d="M39 39l10 10" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+              <circle cx="51" cy="51" r="4.6" fill="#D9A441"/>
+            </svg>
+          </div>
+          <p class="boot-title">Opening the operating manual…</p>
+          <p class="boot-sub">Loading the offline edition. No network required.</p>
+        </div>
+      </main>
+    </div>
+
+    <nav class="mobile-tabs" id="mobile-tabs" aria-label="Primary">
+      <a href="#/home" data-tab="home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.5L12 4l8 6.5V20h-5v-6H9v6H4z"/></svg><span>Home</span></a>
+      <a href="#/read" data-tab="read"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v18H6.5A2.5 2.5 0 0 0 4 23z"/><path d="M4 5.5v15"/></svg><span>Read</span></a>
+      <a href="#/levels" data-tab="levels"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/><circle cx="7" cy="7" r="1.6" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/><circle cx="17" cy="17" r="1.6" fill="currentColor" stroke="none"/></svg><span>Levels</span></a>
+      <a href="#/tracks" data-tab="tracks"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V9M12 20V4M19 20v-7"/><circle cx="5" cy="6" r="2"/><circle cx="12" cy="7" r="2"/><circle cx="19" cy="9" r="2"/></svg><span>Tracks</span></a>
+      <button type="button" data-tab="more" id="more-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="1.8" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.8" fill="currentColor" stroke="none"/><circle cx="19" cy="12" r="1.8" fill="currentColor" stroke="none"/></svg><span>More</span></button>
+    </nav>
+  </div>
+
+  <div class="toasts" id="toasts" aria-live="polite" aria-atomic="false"></div>
+
+  <div class="palette" id="palette" hidden>
+    <div class="palette-backdrop" data-close-palette></div>
+    <div class="palette-panel" role="dialog" aria-modal="true" aria-label="Search the manual">
+      <div class="palette-input-row">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+        <input id="palette-input" type="search" placeholder="Search chapters, bands, tracks, terms…" autocomplete="off" spellcheck="false" aria-controls="palette-results">
+        <kbd class="kbd">Esc</kbd>
+      </div>
+      <div class="palette-results" id="palette-results" role="listbox" aria-label="Search results"></div>
+      <div class="palette-foot">
+        <span><kbd class="kbd">↑</kbd><kbd class="kbd">↓</kbd> navigate</span>
+        <span><kbd class="kbd">↵</kbd> open</span>
+        <span class="palette-hint" id="palette-hint">Search the whole manual, offline</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-root"></div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

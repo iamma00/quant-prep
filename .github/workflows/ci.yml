@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  content:
+    name: Content and frontend
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify document and bundle
+        run: python tools/verify_content.py
+      - name: Verify update manifest
+        run: python tools/make_manifest.py --check
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Parse the frontend
+        run: |
+          node --check ui/js/app.js
+          node --check ui/js/markdown.js
+      - name: Install Tauri CLI
+        run: npm ci
+      - name: Check the Tauri CLI
+        run: npx tauri --version
+
+  rust:
+    name: Rust tests (Windows)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri -> target
+      - name: Unit tests
+        run: cargo test --manifest-path src-tauri/Cargo.toml --locked

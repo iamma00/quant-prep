@@ -1,0 +1,29 @@
+{
+  "name": "quant-org-os",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Offline-first operating manual for quantitative trading firms",
+  "license": "MIT",
+  "scripts": {
+    "tauri": "tauri",
+    "dev": "tauri dev",
+    "build": "tauri build",
+    "build:debug": "tauri build --debug",
+    "check": "cargo check --manifest-path src-tauri/Cargo.toml",
+    "test": "cargo test --manifest-path src-tauri/Cargo.toml",
+    "verify": "python tools/verify_content.py",
+    "manifest": "python tools/make_manifest.py",
+    "portable": "powershell -ExecutionPolicy Bypass -File tools/make_portable.ps1",
+    "content": "python tools/build_content.py",
+    "diagrams": "python tools/make_diagrams.py",
+    "excel": "python tools/make_excel.py",
+    "map": "python tools/make_career_map.py",
+    "android:init": "tauri android init",
+    "android:build": "tauri android build",
+    "icons": "tauri icon src-tauri/icons/app-icon.png"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2"
+  }
+}

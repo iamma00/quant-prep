@@ -1,0 +1,28 @@
+# Dependencies and build output
+node_modules/
+src-tauri/target/
+dist/
+*.log
+build-release.log
+
+# Python scratch files
+__pycache__/
+*.py[cod]
+.venv/
+tools/_*
+!tools/_keep.md
+
+# OS and editor cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+
+# Local secrets and signing material
+*.keystore
+*.jks
+keystore.properties
+.env
+.env.*

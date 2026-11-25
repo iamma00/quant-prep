@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "content_version": "1.0.0",
+  "app_min_version": "0.1.0",
+  "bundle_url": "https://raw.githubusercontent.com/iamma00/quant-org-os/main/src-tauri/resources/seed.json",
+  "bundle_sha256": "b40f60fb6fdfe80a8687d2baadc16284f7df77383c5a90b6168a2a0cd99c4d84",
+  "bundle_size": 517256,
+  "notes": "Initial edition: 51 sections, 8 appendices, nine tracks, ten bands, six org diagrams.",
+  "published_at": "2026-11-24T14:28:37Z"
+}
