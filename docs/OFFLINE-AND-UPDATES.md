@@ -113,7 +113,7 @@ compiled-in seed. Neither touches your settings, reading marks or checklists.
   "schema_version": 1,
   "content_version": "1.0.0",
   "app_min_version": "0.1.0",
-  "bundle_url": "https://raw.githubusercontent.com/iamma00/quant-org-os/main/src-tauri/resources/seed.json",
+  "bundle_url": "https://raw.githubusercontent.com/iamma00/quant-prep/main/src-tauri/resources/seed.json",
   "bundle_sha256": "<64 lowercase hex characters>",
   "bundle_size": 494050,
   "notes": "Initial edition: 51 sections, 8 appendices, nine tracks, ten bands.",

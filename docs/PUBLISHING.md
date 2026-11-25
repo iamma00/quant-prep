@@ -1,7 +1,7 @@
 # Publishing to GitHub
 
 This directory is already a git repository with one commit ready to push. The
-defaults point at `iamma00/quant-org-os`. If that is not your account, change
+defaults point at `iamma00/quant-prep`. If that is not your account, change
 the owner first.
 
 ## 1. Point at your repository

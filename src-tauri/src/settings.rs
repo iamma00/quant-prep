@@ -6,7 +6,7 @@ use std::path::Path;
 use crate::content::{read_json, write_atomic};
 
 pub const DEFAULT_MANIFEST_URL: &str =
-    "https://raw.githubusercontent.com/iamma00/quant-org-os/main/updates/manifest.json";
+    "https://raw.githubusercontent.com/iamma00/quant-prep/main/updates/manifest.json";
 
 pub const THEMES: [&str; 4] = ["system", "light", "dark", "sepia"];
 pub const DENSITIES: [&str; 2] = ["comfortable", "compact"];

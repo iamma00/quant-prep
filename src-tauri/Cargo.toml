@@ -6,8 +6,8 @@ authors = ["Quant Org OS contributors"]
 edition = "2021"
 rust-version = "1.77"
 license = "MIT"
-repository = "https://github.com/iamma00/quant-org-os"
-homepage = "https://github.com/iamma00/quant-org-os"
+repository = "https://github.com/iamma00/quant-prep"
+homepage = "https://github.com/iamma00/quant-prep"
 keywords = ["quant", "trading", "organization", "career", "offline"]
 categories = ["education"]
 

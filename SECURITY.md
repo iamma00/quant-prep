@@ -11,7 +11,7 @@
 
 Please **do not open a public issue** for a vulnerability that can affect users.
 Report it privately through GitHub's
-[Security → Report a vulnerability](https://github.com/iamma00/quant-org-os/security/advisories/new)
+[Security → Report a vulnerability](https://github.com/iamma00/quant-prep/security/advisories/new)
 form. Include the version, platform, reproduction steps and impact. We aim to
 acknowledge within 72 hours and to ship a fix or mitigation within 30 days.
 

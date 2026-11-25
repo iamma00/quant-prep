@@ -45,6 +45,6 @@ All notable changes to this project are documented here. The format follows
 
 - Android release signing requires your own keystore; CI produces an
   installable debug APK by default.
-- The default update URL points at `iamma00/quant-org-os`. Change it in
+- The default update URL points at `iamma00/quant-prep`. Change it in
   Settings after forking.
 - The framework is a design tool, not legal, tax or investment advice.

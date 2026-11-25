@@ -20,7 +20,7 @@ APP = Path(__file__).resolve().parents[1]
 SEED = APP / "src-tauri" / "resources" / "seed.json"
 OUT = APP / "updates" / "manifest.json"
 DEFAULT_BUNDLE_URL = (
-    "https://raw.githubusercontent.com/iamma00/quant-org-os/main/"
+    "https://raw.githubusercontent.com/iamma00/quant-prep/main/"
     "src-tauri/resources/seed.json"
 )
 MAX_BUNDLE_BYTES = 24 * 1024 * 1024

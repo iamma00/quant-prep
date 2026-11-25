@@ -595,7 +595,7 @@ mod tests {
             schema_version: 1,
             content_version: "1.1.0".into(),
             app_min_version: "0.1.0".into(),
-            bundle_url: "https://github.com/iamma00/quant-org-os/releases/download/x/seed.json"
+            bundle_url: "https://github.com/iamma00/quant-prep/releases/download/x/seed.json"
                 .into(),
             bundle_sha256: "a".repeat(64),
             bundle_size: 1000,
@@ -607,13 +607,13 @@ mod tests {
     #[test]
     fn manifest_validation_accepts_github_and_same_host() {
         let url = Url::parse(
-            "https://raw.githubusercontent.com/iamma00/quant-org-os/main/updates/manifest.json",
+            "https://raw.githubusercontent.com/iamma00/quant-prep/main/updates/manifest.json",
         )
         .unwrap();
         assert!(validate_manifest(&manifest(), &url).is_ok());
         let mut same_host = manifest();
         same_host.bundle_url =
-            "https://raw.githubusercontent.com/iamma00/quant-org-os/main/seed.json".into();
+            "https://raw.githubusercontent.com/iamma00/quant-prep/main/seed.json".into();
         assert!(validate_manifest(&same_host, &url).is_ok());
     }
 

@@ -13,11 +13,11 @@
 import { renderMarkdown, escapeHtml as h, toPlainText, slugify, sanitizeSvg } from "./markdown.js";
 
 const APP_VERSION = "0.1.0";
-const REPO_URL = "https://github.com/iamma00/quant-org-os";
+const REPO_URL = "https://github.com/iamma00/quant-prep";
 const RELEASES_URL = `${REPO_URL}/releases`;
 const ISSUES_URL = `${REPO_URL}/issues`;
 const DEFAULT_MANIFEST =
-  "https://raw.githubusercontent.com/iamma00/quant-org-os/main/updates/manifest.json";
+  "https://raw.githubusercontent.com/iamma00/quant-prep/main/updates/manifest.json";
 
 const STORE = {
   settings: "qos.settings.v1",
@@ -3042,7 +3042,7 @@ function viewAbout() {
           <div class="card-kicker">Source</div>
           <h3>Everything is on GitHub</h3>
           <p>The app, the document, the Excel matrix, the career map and the content pipeline. Fork it, adapt it, correct it.</p>
-          <span class="link-arrow mt-2">${icon("github")} iamma00/quant-org-os ${icon("arrowRight")}</span>
+          <span class="link-arrow mt-2">${icon("github")} iamma00/quant-prep ${icon("arrowRight")}</span>
         </a>
         <a class="card card-hover card-link" href="${RELEASES_URL}" data-external="1">
           <div class="card-kicker">Download</div>
