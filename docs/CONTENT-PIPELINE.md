@@ -174,7 +174,13 @@ Options:
 | `--out` | `updates/manifest.json` | Output path. |
 
 The script refuses to publish if the seed is missing, larger than the app's
-limit, or lacks a valid content version.
+limit, contains CR characters, or lacks a valid content version.
+
+The seed is written **LF-only** on every platform. This matters: the manifest
+hashes the exact bytes of `seed.json`, while git normalises the file to LF. A
+CRLF copy would have a different hash and every update check would fail. Both
+the verifier and the manifest generator reject CR bytes, so a Windows editor
+cannot silently reintroduce them.
 
 ## Verification
 

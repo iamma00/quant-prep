@@ -35,6 +35,11 @@ def load_seed() -> tuple[dict, bytes]:
     if not SEED.exists():
         fail(f"missing bundle: {SEED}. Run tools/build_content.py first.")
     raw = SEED.read_bytes()
+    if b"\r" in raw:
+        fail(
+            "bundle contains CR characters; regenerate with tools/build_content.py "
+            "so the published bytes match the manifest"
+        )
     if len(raw) > MAX_BUNDLE_BYTES:
         fail(f"bundle is {len(raw)} bytes, above the {MAX_BUNDLE_BYTES} byte app limit")
     try:

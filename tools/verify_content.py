@@ -99,6 +99,12 @@ def check_seed() -> None:
         error(f"missing content bundle: {SEED}")
         return
     raw = SEED.read_bytes()
+    if b"\r" in raw:
+        error(
+            "seed.json contains CR characters; regenerate with "
+            "tools/build_content.py so the bundle is LF-only and its hash "
+            "matches the published file"
+        )
     try:
         seed = json.loads(raw)
     except json.JSONDecodeError as exc:

@@ -41,6 +41,12 @@ All notable changes to this project are documented here. The format follows
   Windows (installers and a portable zip), macOS and Android and a GitHub Pages
   web preview.
 
+### Fixed
+
+- The content bundle is written LF-only on every platform, so the SHA-256 and
+  size in `updates/manifest.json` match the exact bytes published by GitHub.
+  The verifier and manifest generator now reject CR bytes to prevent drift.
+
 ### Known limitations
 
 - Android release signing requires your own keystore; CI produces an

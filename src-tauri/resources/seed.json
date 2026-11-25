@@ -2,7 +2,7 @@
  "schema_version": 1,
  "content_version": "1.0.0",
  "app_min_version": "0.1.0",
- "generated_at": "2026-11-22T08:13:35+00:00",
+ "generated_at": "2026-11-25T13:07:26+00:00",
  "title": "The Quant Firm Operating System",
  "subtitle": "Organization Design, Leveling & Career Journeys for an Algorithmic Trading Business",
  "edition": "Version 1.0 · November 2026",
@@ -3789,6 +3789,6 @@
    "text": "Closing note This framework is a default, not a dogma. The bands, gates, and committees exist to make the implicit explicit — so that a firm can grow without losing the things that made it good: small teams, fast decisions, real ownership, and an honest relationship with risk. Three questions to ask every year: Is our structure still following our edge? If the edge moved, the org should move. Do our levels still mean something? If a band no longer predicts scope, fix the calibration. Would a strong person join us and know how to grow here? If not, the career framework is not finished. Version 1.0 · November 2026 · Maintained by the CEO office. Review annually, or whenever the firm crosses a scaling threshold."
   }
  ],
- "_sha256": "ba5927387bcae2022ddb98100ceba5e1823123cfd06d10d334a13c3284999f78",
+ "_sha256": "c03569804abde39a632e5349e1fc8ffade828e79125a954bc06989bb6f6795f9",
  "_bytes": 494050
 }

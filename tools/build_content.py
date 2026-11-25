@@ -214,7 +214,11 @@ def build() -> dict:
 def main() -> None:
     seed = build()
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps(seed, ensure_ascii=False, indent=1), encoding="utf-8")
+    # Write LF on every platform. Path.write_text() translates newlines on
+    # Windows, which changes the byte size and breaks the update manifest hash
+    # relative to the LF-normalised file stored in git.
+    with OUT.open("w", encoding="utf-8", newline="\n") as handle:
+        handle.write(json.dumps(seed, ensure_ascii=False, indent=1))
     size = OUT.stat().st_size
     print("wrote", OUT)
     print("content_version", seed["content_version"])
