@@ -1,6 +1,6 @@
 """Point the project at your GitHub owner/repository.
 
-The default is iamma00/quant-org-os. If you fork or rename the repository,
+The default is iamma00/quant-prep. If you fork or rename the repository,
 run this once so the About link, update manifest and package metadata agree.
 
     python tools/set_repo.py --owner your-name
@@ -15,7 +15,7 @@ import sys
 from pathlib import Path
 
 APP = Path(__file__).resolve().parents[1]
-OLD = "iamma00/quant-org-os"
+OLD = "iamma00/quant-prep"
 TEXT_FILES = [
     "README.md",
     "CHANGELOG.md",
@@ -35,7 +35,7 @@ NAME = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--owner", required=True, help="GitHub user or organisation")
-    parser.add_argument("--repo", default="quant-org-os", help="repository name")
+    parser.add_argument("--repo", default="quant-prep", help="repository name")
     parser.add_argument("--dry-run", action="store_true", help="show changes only")
     args = parser.parse_args()
 

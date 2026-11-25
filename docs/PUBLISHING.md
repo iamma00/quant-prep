@@ -1,8 +1,7 @@
 # Publishing to GitHub
 
-This directory is already a git repository with one commit ready to push. The
-defaults point at `iamma00/quant-prep`. If that is not your account, change
-the owner first.
+This directory is a git repository. These instructions assume the default
+`iamma00/quant-prep`; change the owner or repository name if yours differs.
 
 ## 1. Point at your repository
 
@@ -10,7 +9,7 @@ the owner first.
 python tools/set_repo.py --owner YOUR-GITHUB-NAME
 python tools/make_manifest.py --check
 git add -A
-git commit -m "chore: point at YOUR-GITHUB-NAME/quant-org-os"
+git commit -m "chore: point at YOUR-GITHUB-NAME/quant-prep"
 ```
 
 `--repo` changes the repository name too:
@@ -24,24 +23,24 @@ metadata and test fixtures together so they cannot drift.
 
 ## 2. Create the empty repository
 
-On GitHub: **New repository** → name `quant-org-os` → **Public** → do **not**
+On GitHub: **New repository** → name `quant-prep` → **Public** → do **not**
 add a README, license or .gitignore. Then, from this directory:
 
 ```bash
-git remote add origin https://github.com/YOUR-GITHUB-NAME/quant-org-os.git
+git remote add origin https://github.com/YOUR-GITHUB-NAME/quant-prep.git
 git push -u origin main
 ```
 
 Or with GitHub CLI:
 
 ```bash
-gh repo create YOUR-GITHUB-NAME/quant-org-os --public --source=. --remote=origin --push
+gh repo create YOUR-GITHUB-NAME/quant-prep --public --source=. --remote=origin --push
 ```
 
 If the remote already exists:
 
 ```bash
-git remote set-url origin https://github.com/YOUR-GITHUB-NAME/quant-org-os.git
+git remote set-url origin https://github.com/YOUR-GITHUB-NAME/quant-prep.git
 ```
 
 ## 3. Enable the services
